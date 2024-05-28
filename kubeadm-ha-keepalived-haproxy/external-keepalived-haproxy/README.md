@@ -66,11 +66,11 @@ Create keepalived config /etc/keepalived/keepalived.conf
 cat >> /etc/keepalived/keepalived.conf <<EOF
 vrrp_script check_apiserver {
   script "/etc/keepalived/check_apiserver.sh"
-  interval 3
-  timeout 10
-  fall 5
-  rise 2
-  weight -2
+  interval 3 # interval call each 3 secconds
+  timeout 10 # timeout for each request check is 10 seconds
+  fall 5 # if fall consecutively 5 times, this loadbalancer will be marked as down
+  rise 2 # if request worked well 2 times consecutively, this loadbalancer will be backed to up
+  weight -2 # if fall 5 times, the priority of this balancer will be decrease by 2
 }
 
 vrrp_instance VI_1 {
