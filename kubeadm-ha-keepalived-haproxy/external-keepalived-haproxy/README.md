@@ -75,7 +75,7 @@ vrrp_script check_apiserver {
 
 vrrp_instance VI_1 {
     state BACKUP # idealy, between two loadbalancers, one will be master, onather will be backup
-    interface eth1
+    interface eth1 # using the network interface of this virtual_ipaddress. This depending on the range of host-only-adapter that we set up network manager of virtualbox
     virtual_router_id 1
     priority 100 # both of loadbalancer will have 100 priority at first (will be decrease or increase by the script check health)
     advert_int 5
